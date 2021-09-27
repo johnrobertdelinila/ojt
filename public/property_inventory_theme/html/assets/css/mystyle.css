@@ -1,0 +1,16 @@
+.bradius{
+    border-radius:0px;
+}
+.tbox{
+    height:35px;margin-bottom:10px;
+}
+.label_bold{
+    font-weight:bold;
+}
+.a_list{
+    color:black;
+}
+.a_list:hover{
+    color:blue;
+    font-weight:bold;
+}
