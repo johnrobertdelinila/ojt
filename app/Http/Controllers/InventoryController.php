@@ -15,11 +15,15 @@ use App\PAR;
 use App\User_Table;
 use App\TravelOrder;
 use App\DTR;
+use App\Announcement;
+use App\Classwork;
 use App\FileUpload;
+use App\ClassworkAttachment;
 use App\Revisions;
 use App\TravelEmployee;
 use App\holidays;
 use App\Overtime_Request;
+use App\Evaluation;
 use App\Events\livechat;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
@@ -692,9 +696,72 @@ class InventoryController extends Controller
             }
         }
     }
+
+    public function classwork_detail(request $request){
+
+        $classwork = Classwork::with('classwork_attachment.user')->where('id', $request->id)->get()->first();
+        return view('pages.classwork_detail')->with('classwork', $classwork)->with('user_id', Auth::user()->id);
+    }
+
+    public function classwork(request $request){
+        return view('pages.classwork')->with('classworks', Classwork::with('user')->orderby('id', 'DESC')->get());
+    }
+
+    public function classwork_reg(Request $request) {
+        $post = new Classwork();
+        $post->description = $request->description;
+        $post->created_at = Carbon::now('Asia/Manila');
+        $post->updated_at = Carbon::now('Asia/Manila');
+        $post->user_id = Auth::user()->id;
+        $post->save();
+
+        return back()->with('suc','New announcement has been posted!');
+    }
     
     public function announcement(request $request){
-        return view('pages.announcement');
+        return view('pages.announcement')->with('announcements', Announcement::with('user')->orderby('id', 'DESC')->get());
+    }
+
+    public function announcement_reg(Request $request) {
+        $post = new Announcement();
+        $post->announcement = $request->announcement;
+        $post->created_at = Carbon::now('Asia/Manila');
+        $post->updated_at = Carbon::now('Asia/Manila');
+        $post->user_id = Auth::user()->id;
+        $post->title = $request->title;
+        $post->save();
+
+        return back()->with('suc','New announcement has been posted!');
+    }
+
+    public function evaluation(Request $request) {
+        return view('pages.evaluation')->with('classworks', Classwork::with('user')->orderby('id', 'DESC')->get());
+    }
+
+    public function submit_evaluation(Request $request) {
+        $post = new Evaluation();
+        $post->id=$request->id;
+        $post->name=$request->name;
+        $post->company=$request->company;
+        $post->department=$request->department;
+        $post->address=$request->address;
+        $post->jobskill=$request->jobskill;
+        $post->quality=$request->quality;
+        $post->service=$request->service;
+        $post->judgment=$request->judgment;
+        $post->adaptability=$request->adaptability;
+        $post->communication=$request->communication;
+        $post->attendance=$request->attendance;
+        $post->safety=$request->safety;
+        $post->gala=$request->gala;
+        $post->placed=$request->placed;
+        $post->qualification=$request->qualification;
+        $post->weakness=$request->weakness;
+        $post->supervisor=$request->supervisor;
+        $post->date=$request->date;
+        $post->save();
+
+        return back()->with('suc','New announcement has been posted!');
     }
 
     public function dtr_process(request $request){
@@ -898,6 +965,68 @@ class InventoryController extends Controller
         return view('pages.dtr_print')->with('post_records',$post_records);
     }
 
+    public function fileStoreClasswork(Request $request){
+        $image = $request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('classworks/' . $request->input('classwork_id') . '/' . Auth::user()->id), $imageName);
+        
+        $imageUpload = new ClassworkAttachment();
+        $imageUpload->classwork_id = $request->input('classwork_id');
+        $imageUpload->filename = $imageName;
+        $imageUpload->user_id = Auth::user()->id;
+        $imageUpload->save();
+
+        return response()->json(['success'=>$imageName]);
+    }
+
+    public function fileDestroyClasswork(Request $request){
+        $filename =  $request->get('filename');
+        $classwork_id = $request->get('classwork_id');
+        ClassworkAttachment::where('classwork_id',$classwork_id)->where('filename', $filename)->delete();
+
+        $path=public_path().'/classworks/'. $classwork_id . '/'. Auth::user()->id .'/'.$filename;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return $filename . " deleted " . $classwork_id;  
+    }
+    
+    public function revisionsStoreClasswork(Request $request){
+        $image = $request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $image->move(public_path('images'),$imageName);
+        
+        $imageUpload = new Revisions();
+        $imageUpload->uploads_id = $request->input('uploads_id');
+        $imageUpload->file_name = $imageName;
+        $imageUpload->save();
+
+        return response()->json(['success'=>$imageName]);
+    }
+
+    public function revisionsDestroyClasswork(Request $request){
+        $filename =  $request->get('filename');
+        Revisions::where('file_name',$filename)->delete();
+
+        $path=public_path().'/images/'.$filename;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return $filename;  
+    }
+
+    public function delete_single_file_classwork(Request $request){
+        $filename =  $request->filename;
+        $classwork_id =  $request->classwork_id;
+        ClassworkAttachment::where('classwork_id', $classwork_id)->where('filename', $filename)->delete();
+    
+        $path=public_path().'/classworks/'. $classwork_id . '/'. Auth::user()->id .'/'.$filename;
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return back();  
+    }
+
     public function fileStore(Request $request){
         $image = $request->file('file');
         $imageName = $image->getClientOriginalName();
@@ -975,9 +1104,6 @@ class InventoryController extends Controller
     }
 
     public function user_reg(request $request){
-        // $messages = [
-        //     'email.unique' => 'This username has already been taken.',
-        // ];
         $validatedData = $request->validate([
             'email' => 'unique:users',
         ]);

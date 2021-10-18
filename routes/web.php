@@ -61,10 +61,16 @@ Route::get('/travel_edit/{id}', 'InventoryController@travel_edit');
 Route::post('/travel_edit/travel_edit_process', 'InventoryController@travel_edit_process');
 Route::post('/user_reg', 'InventoryController@user_reg');
 Route::get('/travel_filter', 'InventoryController@travel_filter');
+Route::post('/announcement_reg', 'InventoryController@announcement_reg');
+Route::post('/submit_evaluation', 'InventoryController@submit_evaluation');
+Route::post('/classwork_reg', 'InventoryController@classwork_reg');
+Route::get('/classwork_detail/{id}', 'InventoryController@classwork_detail');
 
 //dtr
 Route::get('/logbook', 'InventoryController@logbook');
 Route::get('/announcement', 'InventoryController@announcement');
+Route::get('/classwork', 'InventoryController@classwork');
+Route::get('/evaluation', 'InventoryController@evaluation');
 Route::post('/dtr_process', 'InventoryController@dtr_process');
 Route::get('/dtr_lists', 'InventoryController@dtr_lists');
 Route::get('/dtr_filter', 'InventoryController@dtr_filter');
@@ -83,6 +89,10 @@ Route::post('image/upload/store','InventoryController@fileStore');
 Route::post('image/delete','InventoryController@fileDestroy');
 Route::get('delete_single_file/{filename}','InventoryController@delete_single_file');
 Route::post('add_remarks','InventoryController@add_remarks');
+
+Route::post('classwork_detail/image/upload/classwork','InventoryController@fileStoreClasswork');
+Route::post('classwork_detail/image/delete/classwork','InventoryController@fileDestroyClasswork');
+Route::get('classwork_detail/delete_single_file/{filename}/{classwork_id}','InventoryController@delete_single_file_classwork');
 
 //revisions upload
 Route::post('revisions/upload/store','InventoryController@revisionsStore');
