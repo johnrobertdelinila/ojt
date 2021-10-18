@@ -20,11 +20,11 @@
 <input name="company" required>
 <center>CCSE DEPARTMENT <br>
 <label for="BSIT"> IT</label>
-<input type="checkbox" id="IT" name="department" value="IT">
+<input type="radio" id="IT" name="department" value="IT">
 <label for="BSIT"> COE</label>
-<input type="checkbox" id="COE" name="department" value="COE">
+<input type="radio" id="COE" name="department" value="COE">
 <label for="BSIT"> CS</label>
-<input type="checkbox" id="CS" name="department" value="CS">
+<input type="radio" id="CS" name="department" value="CS">
 <center>ADDRESS: 
 <input name="address" required>
 </center>
@@ -108,11 +108,11 @@ responsibilities.</td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="jobskill" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="jobskill" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="jobskill" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="jobskill" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="jobskill" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="jobskill" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="jobskill" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="jobskill" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="jobskill" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="jobskill" value="1"> </center> </td>
       </tr>
       <tr>
         <td><b>Comments: </b></td>
@@ -183,11 +183,11 @@ td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="quality" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="quality" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="quality" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="quality" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="quality" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="quality" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="quality" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="quality" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="quality" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="quality" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -272,11 +272,11 @@ Improvement necessary.</td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="service" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="service" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="service" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="service" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="service" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="service" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="service" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="service" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="service" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="service" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -349,11 +349,11 @@ judgment.</td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="judgment" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="judgment" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="judgment" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="judgment" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="judgment" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="judgment" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="judgment" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="judgment" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="judgment" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="judgment" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -423,11 +423,11 @@ Resistant to change..</td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="adaptability" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="adaptability" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="adaptability" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="adaptability" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="adaptability" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="adaptability" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="adaptability" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="adaptability" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="adaptability" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="adaptability" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -513,11 +513,11 @@ well with others.
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="communication" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="communication" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="communication" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="communication" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="communication" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="communication" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="communication" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="communication" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="communication" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="communication" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -586,11 +586,11 @@ absences.</td>
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="attendance" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="attendance" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="attendance" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="attendance" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="attendance" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="attendance" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="attendance" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="attendance" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="attendance" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="attendance" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -659,11 +659,11 @@ safety programs.
       </tr>
       <tr>
         <td><b>Rating</b></td>
-        <td> <center> <input type="checkbox" id="5" name="safety" value="5"> </center> </td>
-        <td> <center> <input type="checkbox" id="4" name="safety" value="4"> </center> </td>
-        <td> <center> <input type="checkbox" id="3" name="safety" value="3"> </center> </td>
-        <td> <center> <input type="checkbox" id="2" name="safety" value="2"> </center> </td>
-        <td> <center> <input type="checkbox" id="1" name="safety" value="1"> </center> </td>
+        <td> <center> <input type="radio" id="5" name="safety" value="5"> </center> </td>
+        <td> <center> <input type="radio" id="4" name="safety" value="4"> </center> </td>
+        <td> <center> <input type="radio" id="3" name="safety" value="3"> </center> </td>
+        <td> <center> <input type="radio" id="2" name="safety" value="2"> </center> </td>
+        <td> <center> <input type="radio" id="1" name="safety" value="1"> </center> </td>
        
       </tr>
       <tr>
@@ -754,11 +754,11 @@ safety programs.
 
 <center>a) Did the student report to work in their Gala Uniform/Business Attire/School
 Uniform/Company Uniform as required with ID? Please encircle the number.
-<input type="checkbox" id="5" name="gala" value="5"> 5High
-<input type="checkbox" id="4" name="gala" value="4"> 4High
-<input type="checkbox" id="3" name="gala" value="3"> 3High
-<input type="checkbox" id="2" name="gala" value="2"> 2High
-<input type="checkbox" id="1" name="gala" value="1"> 1High
+<input type="radio" id="5" name="gala" value="5"> 5High
+<input type="radio" id="4" name="gala" value="4"> 4High
+<input type="radio" id="3" name="gala" value="3"> 3High
+<input type="radio" id="2" name="gala" value="2"> 2High
+<input type="radio" id="1" name="gala" value="1"> 1High
 
 </center>
 <center>b) Is the student properly placed? If not please explain briefly.

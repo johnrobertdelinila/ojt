@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <script src="{{ asset('property_inventory_theme/html/assets/js/ckeditor.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('property_inventory_theme/html/assets/js/ckeditor.js') }}" type="text/javascript"></script> -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
     
     @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd')
       <h3>New task</h3>
