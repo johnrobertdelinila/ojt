@@ -218,7 +218,7 @@
                   <!-- <li><a href="{{url('/overtime_request')}}"><i class="icon mdi mdi-time-countdown"></i><span>Overtime Request</span></a> -->
                   <li><a href="{{url('/announcement')}}"><i class="icon mdi mdi-mic-setting"></i><span>Announcement</span></a>
                   <li><a href="{{url('/classwork')}}"><i class="icon mdi mdi-keyboard"></i><span>Task</span></a>
-                  @if(Auth::user()->utype == 'admin')<li><a href="{{url('/evaluation')}}"><i class="icon mdi mdi-account"></i><span>Evaluation</span></a>@endif
+                  @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd' || Auth::user()->utype == 'dc')<li><a href="{{url('/evaluation')}}"><i class="icon mdi mdi-account"></i><span>Evaluation</span></a>@endif
                   @if(Auth::user()->utype == 'admin')
                   <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>Users</span></a>
                     <ul class="sub-menu">
