@@ -28,7 +28,7 @@ class MyController extends Controller
             $txt = $request->input('activation_key').trim(str_replace('SerialNumber','',shell_exec('wmic DISKDRIVE GET SerialNumber 2>&1')));
             fwrite($myfile, base64_encode($txt));
             fclose($myfile);
-            return redirect()->action('InventoryController@dashboard');
+            return redirect()->action('OjtController@dashboard');
         }else{
             $myfile = fopen("profile.txt", "w") or die("Unable to open file!");
             fwrite($myfile, "THE PRODUCT IS NOT ACTIVATED, YOU HAVE TO CONTACT THE PROGRAMMER.");

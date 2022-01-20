@@ -2,7 +2,7 @@
 
 @section('content')
 @foreach($inv_edit_qry as $inv_edit_qrys)
-{!! Form::open(['action' => ['InventoryController@update',$inv_edit_qrys->id], 'method' => 'put', 'onsubmit'=>'return inventory_form();']) !!}
+{!! Form::open(['action' => ['OjtController@update',$inv_edit_qrys->id], 'method' => 'put', 'onsubmit'=>'return inventory_form();']) !!}
 <div class="col-sm-12">
     <div class="panel panel-default panel-border-color panel-border-color-primary" style="border-left:1px solid gray;border-right:1px solid gray;border-bottom:1px solid gray;">
     <div class="panel-heading panel-heading-divider">Property No. <b>{{$inv_edit_qrys->inv_prop_no}}</b><span class="panel-subtitle">All feilds with (<span style="color:red;">*</span>) are required</span></div>

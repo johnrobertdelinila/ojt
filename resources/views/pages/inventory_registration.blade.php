@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{!! Form::open(['action' => 'InventoryController@store', 'method' => 'post', 'onsubmit'=>'return inventory_form();']) !!}
+{!! Form::open(['action' => 'OjtController@store', 'method' => 'post', 'onsubmit'=>'return inventory_form();']) !!}
 {{ csrf_field() }}
 <div class="col-sm-6">
     <div class="panel panel-default panel-border-color panel-border-color-primary" style="border:1px solid gray;border-top:3px solid green;">
