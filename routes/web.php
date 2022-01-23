@@ -42,14 +42,7 @@ Route::get('/dtr_lists', 'OjtController@dtr_lists');
 Route::get('/dtr_filter', 'OjtController@dtr_filter');
 Route::get('/dtr_print/{id}', 'OjtController@dtr_print');
 
-// //Firebase
-// Route::get('/firebase/{username}/{password}', 'FirebaseController@index');
-// Route::get('/fetch_attendance/{name}', 'FirebaseController@fetchUserAttendance');
-// Route::get('/store_attendance/{data}', 'FirebaseController@storeAttendance');
-// Route::get('/fetch_all_attendance', 'FirebaseController@fetchAllAttendance');
-// Route::get('/change_password/{id}/{old_password}/{new_password}', 'FirebaseController@changePassword');
-// Route::get('/verifier/{id}/{old_password}', 'FirebaseController@verifier');
-
+Route::post('profile_picture_form','OjtController@profile_picture_form')->name('profile_picture_form.action');
 
 Route::post('image/upload/store','OjtController@fileStore');
 Route::post('image/delete','OjtController@fileDestroy');
