@@ -6,25 +6,17 @@ use DB;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use App\Inventory;
 use App\Maintenance;
-use App\Identifier;
-use App\Sellers;
-use App\Accessories;
-use App\PAR;
 use App\User_Table;
-use App\TravelOrder;
 use App\DTR;
 use App\Announcement;
 use App\Classwork;
 use App\FileUpload;
 use App\ClassworkAttachment;
 use App\Revisions;
-use App\TravelEmployee;
 use App\holidays;
 use App\Overtime_Request;
 use App\Evaluation;
-use App\Events\livechat;
 use Illuminate\Http\Request;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
@@ -994,19 +986,6 @@ class OjtController extends Controller
         // );
         // $mysqlRef->set($data);
         return NULL;
-    }
-
-    public function livechat_view(request $request){
-        return view('pages.livechat_view');
-    }
-
-    public function livechat_form(request $request){
-        return view('pages.livechat_form');
-    }
-
-    public function livechat_form_submit(request $request){
-        event(new livechat($request->input('content')));
-        return response()->json([]);
     }
 
     public function profile_picture_form(Request $request){
