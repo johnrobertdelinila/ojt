@@ -81,10 +81,13 @@ tr.noBorder td {
 <p>I certify in my honor that the above is true and correct of the hours of work performed and recorded of which was made daily at the time of arrival and departure from office.</p>
   
 <div style="margin-top:35px;text-align:center;">
-            <span style="border-top:2px solid;font-size:20px;">SIGNATURE OF STUDENT</span>
+            <span style="border-top:2px solid;font-size:20px;">SIGNATURE OF STUDENT<br></span>
+            <span style="font-size:20px;">{{$deployed_agency}}<br></span>
             <hr style='height:3px;color:#333;background-color:#333;'>
             <span style="font-size:18px;float:left;"><b><i>Verified as to the prescribed office hours</i></b></span><br><br>
-            <span style="border-bottom:2px solid;font-size:22px;">@if($section_head == '')  @else {{strtoupper($section_head)}} @endif<br/></span>
-            <span style="font-size:20px;"><i>@if($section_head == '')  @else {{strtoupper($agency)}} @endif</i></span>
+            <!-- <span style="border-bottom:2px solid;font-size:22px;">@if($section_head == '')  @else {{strtoupper($section_head)}} @endif<br/></span>
+            <span style="font-size:20px;"><i>@if($section_head == '')  @else {{strtoupper($agency)}} @endif</i></span> -->
+            <span style="border-bottom:2px solid;font-size:22px;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br/></span>
+            <span style="font-size:20px;"><i>SUPERVISOR NAME & SIGNATURE</i></span>
     </div>
 </div>

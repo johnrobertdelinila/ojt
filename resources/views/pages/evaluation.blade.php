@@ -9,13 +9,17 @@
     </div>
     <div class="main-content container-fluid">
       
-
     <form action="submit_evaluation" method="post">
     {{ csrf_field() }}
 <center>PRACTICUM/OJT PERFORMANCE EVALUATION</center>
 
-<center>NAME OF THE STUDENT: 
-<input name="name" required>
+<center>NAME OF THE STUDENT:
+<select name="name" id="name" required>
+        <option value="">Select Student</option>
+        @foreach($users as $user)
+                <option value="{{$user->name}}">{{$user->name}}</option>
+        @endforeach
+</select>
 <center>COMPANY/INSTITUTION/AGENCY: 
 <input name="company" required>
 <center>CCSE DEPARTMENT <br>
@@ -819,9 +823,9 @@ direction and guidance.</p></center>
 
 
 <center> <h4> <b> Supervisor’s Signature
-(signature over printed name) <input name="supervisor" required>
+(signature over printed name) <input name="supervisor" value="{{Auth::user()->name}}" required>
 <br>
-Date:     <input name="date" required>                    
+Date:     <input name="date" value="{{ date('m/d/Y', time()) }}" required>                    
                               
 </center> </h4></b>
 
@@ -842,5 +846,15 @@ Thank you very much.  </h3>
         .catch( error => {
             console.error( error );
         } );
+
+        $(document).ready(() => {
+                $('#name').change(() => {
+                        const name = $('#name').val();
+                        if(name != "") {
+                                alert(name);
+                        }
+                });
+        });
+
     </script>
 @endsection

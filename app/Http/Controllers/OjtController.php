@@ -330,12 +330,45 @@ class OjtController extends Controller
     }
     //identifier end
 
+    private function differenceSecond($date, $time1, $time2) {
+
+        if($date != null && $time1 != null && $time2 != null) {
+            $start = strtotime($time1);
+            $end = strtotime($time2);
+            return $end - $start;
+        }else {
+            return 0;
+        }
+    }
+
+    private function secToHR($seconds) {
+        $hours = floor($seconds / 3600);
+        $minutes = floor(($seconds / 60) % 60);
+        $seconds = $seconds % 60;
+        // return "$hours:$minutes:$seconds";
+        return $hours;
+    }
+
     //users start
     public function users_lists(){
         if(Auth::user()->utype != "admin"){
             return back();
         }else{
             $post_users = DB::table('users')->select('*')->orderby('name','asc')->paginate(50);
+            for ($x = 0; $x < COUNT($post_users); $x++) {
+                $user = $post_users[$x];
+
+                $all_dtr = DTR::where('name', '=', $user->name)->get();
+                $total_seconds = 0;
+                foreach ($all_dtr as $dtr) {
+                    $morning = $this->differenceSecond($dtr->date, $dtr->time1, $dtr->time2);
+                    $afternoon = $this->differenceSecond($dtr->date, $dtr->time3, $dtr->time4);
+                    $total_seconds += ($morning + $afternoon);
+                }
+                
+                $user->total_hours = $this->secToHR($total_seconds);
+                
+            }
             return view('pages.users_lists',['post_users'=>$post_users,]);
         }
     }
@@ -353,7 +386,7 @@ class OjtController extends Controller
         }else{
             $post_users = DB::table('users')->select('*')->get();
             $post_users_particular = DB::table('users')->where('id',$request->id)->select('*')->get();
-            return view('pages.users_edit',['post_users'=>$post_users,'post_users_particular'=>$post_users_particular,]);    
+            return view('pages.users_edit',['post_users'=>$post_users,'post_users_particular'=>$post_users_particular,]);  
         }
 
     }
@@ -507,8 +540,9 @@ class OjtController extends Controller
         return back()->with('suc','New announcement has been posted!');
     }
 
-    public function evaluation(Request $request) {
-        return view('pages.evaluation')->with('classworks', Classwork::with('user')->orderby('id', 'DESC')->get());
+    public function evaluation(Request $request) { 
+        $users = User_Table::where("utype", "user")->get();
+        return view('pages.evaluation')->with('users', $users)->with('classworks', Classwork::with('user')->orderby('id', 'DESC')->get());
     }
 
     public function submit_evaluation(Request $request) {
@@ -556,6 +590,9 @@ class OjtController extends Controller
             if($check_entry_get[0]->time2 == ''){
                 $post->time2 = $carbon_now_time;
                 $post->updated_at = Carbon::now('Asia/Manila');
+                if($request->input('accomplishment') != null) {
+                    $post->accomplishment = $request->input('accomplishment');
+                }
                 $post->save();
                 $this->singleAttendance(Auth::user()->id, $post);
                 return back()
@@ -683,6 +720,8 @@ class OjtController extends Controller
                         $head = '';
                         $title = '';
                     }
+                    
+
                     return view('pages.dtr_print_accomplishments')
                             ->with('post_dtr',$post_dtr)
                             ->with('employee_name',$request->input('employee_name'))
@@ -709,11 +748,15 @@ class OjtController extends Controller
                         $head = '';
                         $title = '';
                     }
+
+                    $user = DB::table('users')->where('name','like','%'.$request['employee_name'].'%')->get();
+
                     return view('pages.dtr_print_all')
                     ->with('post_dtr',$post_dtr)
                     ->with('employee_name',$request->input('employee_name'))
                     ->with('agency',$title)
                     ->with('section_head',$head)
+                    ->with('deployed_agency', $user[0]->position)
                     ->with('start_date',$request->input('start_date'))
                     ->with('end_date',$request->input('end_date'))
                     ->with('per_page',$request->input('per_page'));
@@ -879,6 +922,7 @@ class OjtController extends Controller
     public function user_reg(request $request){
         $validatedData = $request->validate([
             'email' => 'unique:users',
+            'name' => 'unique:users'
         ]);
 
         $post = new User_Table;
