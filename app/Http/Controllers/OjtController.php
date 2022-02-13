@@ -439,6 +439,11 @@ class OjtController extends Controller
     //users end
     
     public function logbook(){
+
+        if(Auth::user()->utype != "user") {
+            return $this->dtr_lists(new \Illuminate\Http\Request());
+        }
+
         if(Auth::user()->status == "Deactivated"){
             auth()->logout();
             return back()->with('deactivated','Your account was deactivated by the administrator.');

@@ -5,7 +5,9 @@
     <div class="row">
     <div class="col-sm-6">
         <div class="panel panel-default panel-border-color panel-border-color-primary" style="border:1px solid gray;border-top:3px solid green;">
-        <div class="panel-heading panel-heading-divider" style="font-weight:bold;">User Registration<span class="panel-subtitle">All fields are required.</span></div>
+        <div class="panel-heading panel-heading-divider" style="font-weight:bold;">
+            {{ request()->route()->uri == 'students_registration' ? 'Student' : 'User' }} Registration
+            <span class="panel-subtitle">All fields are required.</span></div>
         <div class="panel-body">
 
 @if(session('suc'))
@@ -28,7 +30,7 @@
         {{ csrf_field() }}
                 <div class="form-group xs-pt-10 col-sm-12">
                     {{--  DIVIDER EMPLOYEE ID  --}}
-                    <div class="input-group" style="margin-bottom:5px;">
+                    <div class="input-group" style="margin-bottom:5px;{{ request()->route()->uri == 'students_registration' ? '' : 'display:none;' }}">
                         <span class="input-group-addon">ID Number: </span>
                         <input type="text" name="student_id" value="000000" class="form-control" required>
                     </div>
@@ -73,11 +75,15 @@
                         <span class="input-group-addon">User Type: </span>
                         <select name="utype" class="select2" required>
                                 <option value="">- - - Select User Type - - -</option>
-                                <option value="user" selected>STUDENT</option>
-                                <!-- <option value="sc">SECTION CHIEF</option> -->
-                                <!-- <option value="dc">DIVISION CHIEF</option> -->
-                                <option value="rd">SUPERVISOR</option>
-                                <option value="admin">ADMIN</option>
+                                
+                                @if(request()->route()->uri == 'students_registration')
+                                    <option value="user" selected>STUDENT</option>
+                                @endif
+                                @if(request()->route()->uri == 'users_registration')
+                                    <option value="rd" selected>SUPERVISOR</option>
+                                    <option value="admin">ADMIN</option>
+                                @endif
+                                
                         </select>
                     </div>
                     {{--  ASSIGNATORIES  --}}

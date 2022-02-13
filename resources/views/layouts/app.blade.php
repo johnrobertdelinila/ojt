@@ -106,92 +106,6 @@
               </li>
             </ul>
             {{--  notification  --}}
-<!--
-{{--  right navbar  --}}
-      <nav class="be-right-sidebar">
-        <div class="sb-content">
-          <div class="tab-navigation">
-            <ul role="tablist" class="nav nav-tabs nav-justified">
-              <li role="presentation" class="active"><a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">Chat</a></li>
-              <li role="presentation"><a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab"></a></li>
-              <li role="presentation"><a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab"></a></li>
-            </ul>
-          </div>
-          <div class="tab-panel">
-            <div class="tab-content">
-              <div id="tab1" role="tabpanel" class="tab-pane tab-chat active">
-                <div class="chat-contacts">
-                  <div class="chat-sections">
-                    <div class="be-scroller">
-                      <div class="content">
-                        <h2 style="color:black;">Present</h2>
-                        <div class="contact-list contact-list-recent">
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data"><span class="status"></span><span class="name">Claire Sassu</span><span class="message">Can you share the...</span></div></a></div>
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data"><span class="status"></span><span class="name">Maggie jackson</span><span class="message">I confirmed the info.</span></div></a></div>
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data"><span class="status"></span><span class="name">Joel King		</span><span class="message">Ready for the meeti...</span></div></a></div>
-                        </div>
-                        <h2 style="color:black;">Absent</h2>
-                        <div class="contact-list">
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data2"><span class="status offline"></span><span class="name">Mike Bolthort</span></div></a></div>
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data2"><span class="status offline"></span><span class="name">Maggie jackson</span></div></a></div>
-                          <div class="user"><a href="#"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                              <div class="user-data2"><span class="status offline"></span><span class="name">Jhon Voltemar</span></div></a></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {{--  <div class="bottom-input">
-                    <input type="text" placeholder="Search..." name="q"><span class="mdi mdi-search"></span>
-                  </div>  --}}
-                </div>
-                <div class="chat-window">
-                  <div class="title">
-                    <div class="user"><img src="{{ asset('property_inventory_theme/html/assets/img/avatar6.png') }}" alt="Avatar">
-                      <h2>Maggie jackson</h2><span>Active 1h ago</span>
-                    </div><span class="icon return mdi mdi-chevron-left"></span>
-                  </div>
-                  <div class="chat-messages">
-                    <div class="be-scroller">
-                      <div class="content">
-                        <ul>
-                          <li class="friend">
-                            <div class="msg">Hello</div>
-                          </li>
-                          <li class="self">
-                            <div class="msg">Hi, how are you?</div>
-                          </li>
-                          <li class="friend">
-                            <div class="msg">Good, I'll need support with my pc</div>
-                          </li>
-                          <li class="self">
-                            <div class="msg">Sure, just tell me what is going on with your computer?</div>
-                          </li>
-                          <li class="friend">
-                            <div class="msg">I don't know it just turns off suddenly</div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="chat-input">
-                    <div class="input-wrapper">
-                      <input type="text" placeholder="Message..." name="q" autocomplete="off" style="color:black;">
-                      <span class="send-msg mdi mdi-mail-send"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-{{--  right navbar  --}}
--->
             {{--  <div class="page-title"><span style="margin-left:50px;">PROPERTY INVENTORY</span></div>  --}}
           </div>
         </div>
@@ -203,7 +117,10 @@
               <div class="left-sidebar-content">
                 <ul class="sidebar-elements">
                   <li class="divider">NAVIGATION MENU</li>
-                  <li class="active"><a href="{{url('/logbook')}}"><i class="icon mdi mdi-collection-bookmark"></i><span>Logbook</span></a>
+                    @if(Auth::user()->utype == 'user')
+                    <li class="active"><a href="{{url('/logbook')}}"><i class="icon mdi mdi-collection-bookmark"></i><span>Logbook</span></a>
+                    @endif
+                  
                   </li>
                   <li class="parent"><a href="#"><i class="icon mdi mdi-assignment"></i><span>Journals</span></a>
                     <ul class="sub-menu">
@@ -217,7 +134,10 @@
                   </li>
                   <!-- <li><a href="{{url('/overtime_request')}}"><i class="icon mdi mdi-time-countdown"></i><span>Overtime Request</span></a> -->
                   <li><a href="{{url('/announcement')}}"><i class="icon mdi mdi-mic-setting"></i><span>Announcement</span></a>
-                  <li><a href="{{url('/classwork')}}"><i class="icon mdi mdi-keyboard"></i><span>Task</span></a>
+                  @if(Auth::user()->utype == 'rd')
+                    <li><a href="{{url('/classwork')}}"><i class="icon mdi mdi-keyboard"></i><span>Task</span></a>
+                  @endif
+                  
                   @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd' || Auth::user()->utype == 'dc')<li><a href="{{url('/evaluation')}}"><i class="icon mdi mdi-account"></i><span>Evaluation</span></a>@endif
                   @if(Auth::user()->utype == 'admin')
                   <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>Users</span></a>
@@ -225,6 +145,8 @@
                       <li><a href="{{url('/users_lists')}}">Lists</a>
                       </li>
                       <li><a href="{{url('/users_registration')}}">Register New</a>
+                      </li>
+                      <li><a href="{{url('/students_registration')}}">Register Student</a>
                       </li>
                     </ul>
                   </li>

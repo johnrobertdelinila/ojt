@@ -16,6 +16,7 @@ Route::get('/identifier_delete/{id}', 'OjtController@identifier_delete');
 Route::get('/identifier_lists', 'OjtController@identifier_lists');
 Route::get('/users_lists', 'OjtController@users_lists');
 Route::get('/users_registration', 'OjtController@users_registration');
+Route::get('/students_registration', 'OjtController@users_registration');
 
 // Route::get('/users_edit/{id}', 'OjtController@users_edit');
 Route::get('/users_edit_password/{id}', 'OjtController@users_edit_password');

@@ -188,9 +188,6 @@
                 return false;
                 }
             };
-// $(window).on("blur focus", function(e) {
-//     var prevType = $(this).data("prevType");
-
     if (prevType != e.type) {   //  reduce double fire issues
         switch (e.type) {
             case "blur":
@@ -201,9 +198,6 @@
                 break;
         }
     }
-
-//     $(this).data("prevType", e.type);
-// })
     </script>
     @include('layouts.timercolor')
 @endsection

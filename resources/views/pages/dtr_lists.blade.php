@@ -117,6 +117,7 @@
                 <th style="width:10%;">NN Time In</th>
                 <th style="width:10%;">PM Time Out</th>
                 <th style="width:20%;">Journal</th>
+                <th style="width:10%;">Notification View</th>
                 <th style="width:10%;">Action</th>
             </tr>
         </thead>
@@ -165,8 +166,6 @@
                             <span style="color:green;"><span class="mdi mdi-comment-alt-text"></span> Task:</span><br/>
                             <?php echo stripslashes(nl2br($posts_dtr->remarks)); ?>
                             <span style="font-size:12px;">
-                                <!-- <br/><br/>- Engr. MARIA DORICA NAZ-HIPE, CESE -->
-                                <!-- <br/>- Regional Director -->
                             </span>
                         @endif
                         <?php $i = 1; ?>
@@ -174,6 +173,7 @@
                 @else 
                     <td style="background-color:#FFFCAE;"></td>
                 @endif
+                <td>{{ $posts_dtr->time1 == null ? "No Time In AM" : ($posts_dtr->time2 == null ? "No Time Out AM" : ($posts_dtr->time3 == null ? "No Time In PM" : ($posts_dtr->time4 == null ? "No Time Out PM" : ("")))) }}</td>
                 <td style="vertical-align:top;">
                     <div class="btn-group btn-hspace">
                         <button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Action <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
@@ -181,7 +181,7 @@
                             <li><a href="{{url('/dtr_print/'.$posts_dtr->id)}}" target="_blank">Print</a></li>
                             @if($posts_dtr->time4)
                                 @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd')
-                                    <li data-toggle="modal" data-target="#mod-success2" onclick='remarks_function("{{ str_replace("'","\'",stripslashes(str_replace("\r\n"," ", $posts_dtr->remarks))) }}","{{ $posts_dtr->id }}");'><a href="###">Add Task</a></li>
+                                    <li data-toggle="modal" class="hehe" data-target="#mod-success2" onclick='remarks_function("{{ str_replace("'","\'",stripslashes(str_replace("\r\n"," ", $posts_dtr->remarks))) }}","{{ $posts_dtr->id }}");'><a href="###">Add Task</a></li>
                                 @endif
                             @endif
                         </ul>
@@ -201,6 +201,7 @@
         </tbody>
 
         </table>
+        
     </div>
     </div>
 </div>
@@ -244,6 +245,7 @@
                             <button class="btn btn-lg btn-success"><i class="icon icon-left mdi mdi-floppy"></i> Save</button>
                         </div>
                     </div>
+                    
                 </form>   
             </div>
           </div>
@@ -269,10 +271,12 @@
 <script type="text/javascript">
     $(document).ready(function(){
         App.formElements();
+
     });
 </script>
 
     <script type="text/javascript">
+
             Dropzone.options.dropzone =
             {
                 maxFilesize: 500,
@@ -316,4 +320,5 @@
                 }
     };
     </script>
+    
 @endsection
