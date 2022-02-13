@@ -17,6 +17,7 @@
                     <th>UserType</th>
                     <th>Status</th>
                     <th>Total Hours</th>
+                    <th>Rating Result</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -34,6 +35,7 @@
                     <td>{{ $posts_users->utype }}</td>
                     <td>{{ $posts_users->status }}</td>
                     <td>{{ $posts_users->total_hours }}</td>
+                    <td>{{ $posts_users->rating }}</td>
                     <td class="actions" style="text-align:left;">
                     @if($posts_users->utype!='admin')
                             <a href="{{url('users_edit_password/'.$posts_users->id)}}" class="btn btn-md btn-warning"><i class="mdi mdi-edit">&nbsp;<span style="font-family:tahoma;">Edit</span></i></a>&nbsp;&nbsp;&nbsp;
@@ -50,7 +52,7 @@
                 </tr>
             @endforeach
                 <tr>
-                    <td colspan="6" class="text-center">{{ $post_users->links() }}</td>
+                    <td colspan="7" class="text-center">{{ $post_users->links() }}</td>
                 </tr>
             </tbody>
             </table>

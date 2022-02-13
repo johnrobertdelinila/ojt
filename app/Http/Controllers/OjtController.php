@@ -365,6 +365,15 @@ class OjtController extends Controller
                     $afternoon = $this->differenceSecond($dtr->date, $dtr->time3, $dtr->time4);
                     $total_seconds += ($morning + $afternoon);
                 }
+
+                $evaluations = Evaluation::where('name', '=', $user->name)->get();
+                $user->rating = "Not Rated Yet";
+                if(!$evaluations->isEmpty()) {
+                    $evaluation = $evaluations[0];
+                    $total = $evaluation->jobskill + $evaluation->quality + $evaluation->service + $evaluation->judgement + $evaluation->adaptability 
+                    + $evaluation->communication + $evaluation->attendance + $evaluation->safety + $evaluation->gala;
+                    $user->rating = $total;
+                }
                 
                 $user->total_hours = $this->secToHR($total_seconds);
                 
