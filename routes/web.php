@@ -35,6 +35,7 @@ Route::get('/classwork_detail/{id}', 'OjtController@classwork_detail');
 
 //dtr
 Route::get('/logbook', 'OjtController@logbook');
+Route::get('/solution', 'OjtController@solution');
 Route::get('/announcement', 'OjtController@announcement');
 Route::get('/classwork', 'OjtController@classwork');
 Route::get('/evaluation', 'OjtController@evaluation');

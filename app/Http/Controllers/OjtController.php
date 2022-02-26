@@ -446,6 +446,12 @@ class OjtController extends Controller
         return back()->with('suc2','Successfully changed your information!');
     }
     //users end
+
+    public function solution() {
+        
+        return view('pages.solution');
+
+    }
     
     public function logbook(){
 

@@ -21,7 +21,7 @@
         @endforeach
 </select>
 <center>COMPANY/INSTITUTION/AGENCY: 
-<input name="company" required>
+<input id="company" name="company" required>
 <center>CCSE DEPARTMENT <br>
 <label for="BSIT"> IT</label>
 <input type="radio" id="IT" name="department" value="IT">
@@ -30,7 +30,7 @@
 <label for="BSIT"> CS</label>
 <input type="radio" id="CS" name="department" value="CS">
 <center>ADDRESS: 
-<input name="address" required>
+<input id="address" name="address" required>
 </center>
 
 
@@ -848,10 +848,17 @@ Thank you very much.  </h3>
         } );
 
         $(document).ready(() => {
+                var data = {!! json_encode($users, JSON_HEX_TAG) !!};
+                console.log(data);
                 $('#name').change(() => {
                         const name = $('#name').val();
                         if(name != "") {
-                                alert(name);
+                                data.forEach((student) => {
+                                        if(student.name == name) {
+                                                $('#company').val(student.position);
+                                                $('#address').val("Catbangen San Fernando City La Union")
+                                        }
+                                });
                         }
                 });
         });

@@ -142,10 +142,15 @@
                 @else <td style="background-color:#FFFCAE;"></td> @endif
                 @if($posts_dtr->time4) 
                     <td style="vertical-align:top;">
-                        <?php echo stripslashes(nl2br($posts_dtr->accomplishment)); ?><br/>
+                        <div class="content hideContent">
+                            <?php echo stripslashes(nl2br($posts_dtr->accomplishment)); ?>
+                        </div>
+                        <div class="show-more">
+                            <a href="#">Show more</a>
+                        </div>
                         <?php $i = 1; ?>
                         @foreach($post_file as $posts_file)
-                            @if($posts_file->dtr_id == $posts_dtr->id) 
+                            @if($posts_file->dtr_id == $posts_dtr->id)
                                 <a href="{{url('images/'.$posts_file->file_name)}}" target="_blank"><i class="icon icon-left mdi mdi-attachment-alt"></i> Attachment <?php echo $i++; ?></a>
                                 @if(Auth::user()->utype=='rd' || Auth::user()->utype=='admin')
                                     - - -
@@ -266,11 +271,28 @@
         $('#filter_table').toggle(150);
         });
     });
+
 </script>
 {{--  INITIALIZE FORM ELEMENTS  --}}
 <script type="text/javascript">
     $(document).ready(function(){
         App.formElements();
+
+        $(".show-more a").on("click", function() {
+            var $this = $(this); 
+            var $content = $this.parent().prev("div.content");
+            var linkText = $this.text().toUpperCase();    
+            
+            if(linkText === "SHOW MORE"){
+                linkText = "Show less";
+                $content.switchClass("hideContent", "showContent", 100);
+            } else {
+                linkText = "Show more";
+                $content.switchClass("showContent", "hideContent", 100);
+            };
+
+            $this.text(linkText);
+        });
 
     });
 </script>

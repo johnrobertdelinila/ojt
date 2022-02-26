@@ -33,6 +33,38 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('property_inventory_theme/html/assets/lib/bootstrap-slider/css/bootstrap-slider.css') }}"/>
     <link rel="stylesheet" href="{{ asset('property_inventory_theme/html/assets/css/style.css') }}" type="text/css"/>
 
+    <style>
+      div.text-container {
+          margin: 0 auto;
+          width: 75%;    
+      }
+
+      .hideContent {
+          overflow: hidden;
+          line-height: 1em;
+          height: 2em;
+      }
+
+      .showContent {
+          line-height: 1em;
+          height: auto;
+      }
+      .showContent{
+          height: auto;
+      }
+
+      h1 {
+          font-size: 24px;        
+      }
+      p {
+          padding: 10px 0;
+      }
+      .show-more {
+          padding: 10px 0;
+          text-align: center;
+      }
+    </style>
+
     <link rel="stylesheet" href="{{ asset('property_inventory_theme/html/assets/css/mystyle.css') }}" type="text/css"/>
     <script src="{{ asset('property_inventory_theme/html/assets/js/owens.js') }}" type="text/javascript"></script>
     //dropzone script
@@ -117,11 +149,9 @@
               <div class="left-sidebar-content">
                 <ul class="sidebar-elements">
                   <li class="divider">NAVIGATION MENU</li>
-                    @if(Auth::user()->utype == 'user')
-                    <li class="active"><a href="{{url('/logbook')}}"><i class="icon mdi mdi-collection-bookmark"></i><span>Logbook</span></a>
-                    @endif
-                  
-                  </li>
+                  @if(Auth::user()->utype == 'user')
+                    <li class="active"><a href="{{url('/logbook')}}"><i class="icon mdi mdi-collection-bookmark"></i><span>Logbook</span></a></li>
+                  @endif
                   <li class="parent"><a href="#"><i class="icon mdi mdi-assignment"></i><span>Journals</span></a>
                     <ul class="sub-menu">
                       @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd' || Auth::user()->utype == 'dc')
@@ -153,7 +183,11 @@
                   <!-- <li><a href="{{url('/holidays')}}"><i class="icon mdi mdi-calendar"></i><span>Holidays</span></a> -->
                   @endif
                   {{--  <li><a target="_blank" href="{{url('/search_items')}}"><i class="icon mdi mdi-keyboard"></i><span>Frontdesk</span></a>  --}}
-                  </li>
+                  <!-- </li> -->
+
+                  @if(Auth::user()->utype == 'user')
+                    <li><a href="{{url('/solution')}}"><i class="icon mdi mdi-globe"></i><span>Alternative Solution</span></a></li>
+                  @endif
                 </ul>
               </div>
             </div>
