@@ -36,6 +36,14 @@
                             <input type="file" accept="image/*" onchange="$('#profile_picture_form').submit();" id="profile_picture_input" name="image_photo" class="form-control">
                         </form>
                     </div>
+                    <div class="col-xs-6">
+                        <form type="post" action="signature_form" id="signature_form">
+                        @csrf
+                            <span class="input-group-addon">E-Signature</span>
+                            <input type="text" name="id" value="{{$posts_users_particular->id}}" readonly hidden>
+                            <input type="file" accept="image/*" onchange="$('#signature_form').submit();" id="profile_picture_input" name="image_photo" class="form-control">
+                        </form>
+                    </div>
                     @if(Auth::user()->utype == 'admin')
                         <div class="col-xs-6">
                             <a href="{{url('users_resetpassword/'.$posts_users_particular->id)}}" class="btn btn-space btn-danger btn-lg" style="width:100%;">Reset Password</a>
@@ -160,6 +168,22 @@ $(document).ready(function(){
 			processData: false,
 			success:function(data){
                 alert('Successfully Changed Your Profile Picture!');
+			}
+		});
+	});
+
+    $('#signature_form').on('submit',function(event){
+            event.preventDefault();
+		$.ajax({
+            url:"{{ route('signature_form.action') }}",
+			method:"POST",
+            data:new FormData(this),
+			dataType:'JSON',
+			contentType: false,
+			cache: false,
+			processData: false,
+			success:function(data){
+                alert('Successfully Uploaded E-Signature!');
 			}
 		});
 	});

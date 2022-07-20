@@ -45,6 +45,7 @@ Route::get('/dtr_filter', 'OjtController@dtr_filter');
 Route::get('/dtr_print/{id}', 'OjtController@dtr_print');
 
 Route::post('profile_picture_form','OjtController@profile_picture_form')->name('profile_picture_form.action');
+Route::post('signature_form','OjtController@signature_form')->name('signature_form.action');
 
 Route::get('/logbook', 'OjtController@logbook')->name('show_logbook');
 

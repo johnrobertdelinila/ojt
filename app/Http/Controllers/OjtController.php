@@ -644,8 +644,6 @@ class OjtController extends Controller
                         $user = $supervisors[$x];
                         Mail::to($user->email)->send(new SendNotification($user, Auth::user()->name));
                     }
-                    
-                    return "haha";
 
                     if($request->input('accomplishment') != ""){
                         $post->time4 = $carbon_now_time;
@@ -1073,7 +1071,21 @@ class OjtController extends Controller
         $user_information->image_photo = $imageName;
         $user_information->save();
 
-        $this->firebase_profile_picture(Auth::user()->id);
+        // $this->firebase_profile_picture(Auth::user()->id);
+
+        return response()->json([]);
+    }
+
+    public function signature_form(Request $request){
+        $image = $request->file('image_photo');
+        $imageName = rand().$image->getClientOriginalName();
+        $image->move(public_path('images'),$imageName);
+        
+        $user_information = User_Table::find($request->input('id'));
+        $user_information->signature = $imageName;
+        $user_information->save();
+
+        // $this->firebase_profile_picture(Auth::user()->id);
 
         return response()->json([]);
     }
