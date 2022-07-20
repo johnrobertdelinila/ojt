@@ -46,6 +46,8 @@ Route::get('/dtr_print/{id}', 'OjtController@dtr_print');
 
 Route::post('profile_picture_form','OjtController@profile_picture_form')->name('profile_picture_form.action');
 
+Route::get('/logbook', 'OjtController@logbook')->name('show_logbook');
+
 Route::post('image/upload/store','OjtController@fileStore');
 Route::post('image/delete','OjtController@fileDestroy');
 Route::get('delete_single_file/{filename}','OjtController@delete_single_file');

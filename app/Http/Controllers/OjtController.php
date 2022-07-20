@@ -22,11 +22,13 @@ use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\SendNotification;
 
 use Kreait\Firebase;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\ServiceAccount;
 use Kreait\Firebase\Database;
+use Illuminate\Support\Facades\Mail;
 
 //asdasd
 class OjtController extends Controller
@@ -488,6 +490,7 @@ class OjtController extends Controller
                     ->where('dtr_id',$check_entry_get[0]->id)
                     ->orderBy('id','asc')
                     ->get();
+                    
                     return view('pages.logbook')
                     ->with('holidays_count', $holidays_count)
                     ->with('btn_check','time4')
@@ -635,6 +638,15 @@ class OjtController extends Controller
                     $this->singleAttendance(Auth::user()->id, $post);
                     return back();
                 }else{
+                    // Insert sending email here
+                    $supervisors = DB::table('users')->select('*')->where("position", Auth::user()->position)->where("utype", "rd")->get();
+                    for ($x = 0; $x < COUNT($supervisors); $x++) {
+                        $user = $supervisors[$x];
+                        Mail::to($user->email)->send(new SendNotification($user, Auth::user()->name));
+                    }
+                    
+                    return "haha";
+
                     if($request->input('accomplishment') != ""){
                         $post->time4 = $carbon_now_time;
                         $post->updated_at = Carbon::now('Asia/Manila');
