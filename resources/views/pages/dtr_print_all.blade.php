@@ -81,7 +81,10 @@ tr.noBorder td {
 <p>I certify in my honor that the above is true and correct of the hours of work performed and recorded of which was made daily at the time of arrival and departure from office.</p>
   
 <div style="margin-top:35px;text-align:center;">
-            <span style="border-top:2px solid;font-size:20px;">SIGNATURE OF STUDENT<br></span>
+            @if($signature != null)
+                <center><img src="{{ asset('images/'.$signature) }}" width="250" alt="Signature"></center>
+            @endif
+            <center><span style="border-top:2px solid;font-size:20px;">SIGNATURE OF STUDENT<br></span></center>
             <span style="font-size:20px;">{{$deployed_agency}}<br></span>
             <hr style='height:3px;color:#333;background-color:#333;'>
             <span style="font-size:18px;float:left;"><b><i>Verified as to the prescribed office hours</i></b></span><br><br>

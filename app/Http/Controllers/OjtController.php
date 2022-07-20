@@ -751,11 +751,12 @@ class OjtController extends Controller
                         $title = '';
                     }
                     
-
+                    $signature = Auth::user()->signature;
                     return view('pages.dtr_print_accomplishments')
                             ->with('post_dtr',$post_dtr)
                             ->with('employee_name',$request->input('employee_name'))
                             ->with('agency',$title)
+                            ->with('signature', $signature)
                             ->with('section_head',$head)
                             ->with('start_date',$request->input('start_date'))
                             ->with('end_date',$request->input('end_date'));
@@ -780,12 +781,14 @@ class OjtController extends Controller
                     }
 
                     $user = DB::table('users')->where('name','like','%'.$request['employee_name'].'%')->get();
+                    $signature = Auth::user()->signature;
 
                     return view('pages.dtr_print_all')
                     ->with('post_dtr',$post_dtr)
                     ->with('employee_name',$request->input('employee_name'))
                     ->with('agency',$title)
                     ->with('section_head',$head)
+                    ->with('signature', $signature)
                     ->with('deployed_agency', $user[0]->position)
                     ->with('start_date',$request->input('start_date'))
                     ->with('end_date',$request->input('end_date'))
