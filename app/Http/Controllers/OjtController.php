@@ -351,6 +351,11 @@ class OjtController extends Controller
         return $hours;
     }
 
+    private function secToDays($seconds) {
+        $s = (int)$seconds;
+        return sprintf('%d', $s/86400);
+    }
+
     //users start
     public function users_lists(){
         if(Auth::user()->utype != "admin" && Auth::user()->utype != "rd"){
@@ -382,6 +387,7 @@ class OjtController extends Controller
                 }
                 
                 $user->total_hours = $this->secToHR($total_seconds);
+                $user->total_days = $this->secToDays($total_seconds);
                 
             }
             return view('pages.users_lists',['post_users'=>$post_users,]);

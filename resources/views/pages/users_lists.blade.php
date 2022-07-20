@@ -17,6 +17,8 @@
                     <th>UserType</th>
                     <th>Status</th>
                     <th>Total Hours</th>
+                    <th>Total Days</th>
+                    <th>Total Weeks</th>
                     <th>Rating Result</th>
                     <th>Action</th>
                 </tr>
@@ -35,6 +37,8 @@
                     <td>{{ $posts_users->utype }}</td>
                     <td>{{ $posts_users->status }}</td>
                     <td>{{ $posts_users->total_hours }}</td>
+                    <td>{{ $posts_users->total_days }}</td>
+                    <td>0</td>
                     <td>{{ $posts_users->rating }}</td>
                     <td class="actions" style="text-align:left;">
                     @if($posts_users->utype!='admin')
