@@ -158,7 +158,17 @@
                         <li><a href="{{url('/dtr_lists')}}">List</a></li>
                       @endif
                       @if(Auth::user()->utype == 'sc' || Auth::user()->utype == 'dc' || Auth::user()->utype == 'user')
-                        <li><a href="{{url('dtr_lists?employee_name='.Auth::user()->name.'&start_date='.date('Y').'-01-01'.'&end_date='.date('Y-m-d').'&per_page=10&filter=Print')}}">My Journals</a></li>
+                        <li><a href="{{url('dtr_lists?employee_name='.Auth::user()->name.'&start_date='.date('Y').'-01-01'.'&end_date='.date('Y-m-d').'&per_page=10&filter=Print&type=My Journals')}}">My Journals</a></li>
+                      @endif
+                    </ul>
+                  </li>
+                  <li class="parent"><a href="#"><i class="icon mdi mdi-bookmark"></i><span>DTR</span></a>
+                    <ul class="sub-menu">
+                      @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd' || Auth::user()->utype == 'dc')
+                        <li><a href="{{url('/dtr_lists')}}">List</a></li>
+                      @endif
+                      @if(Auth::user()->utype == 'sc' || Auth::user()->utype == 'dc' || Auth::user()->utype == 'user')
+                        <li><a href="{{url('dtr_lists?employee_name='.Auth::user()->name.'&start_date='.date('Y').'-01-01'.'&end_date='.date('Y-m-d').'&per_page=10&filter=Print&type=My DTR')}}">My DTR</a></li>
                       @endif
                     </ul>
                   </li>

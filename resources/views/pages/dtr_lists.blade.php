@@ -89,8 +89,14 @@
                             <p class="xs-mt-10 xs-mb-10 pull-right">
                                 {{--  <button class="btn btn-space btn-success btn-lg"><i class="icon icon-left mdi mdi-print"></i> PRINT RECORDS</button>  --}}
                                 <button name="filter" value="Filter" class="btn btn-space btn-warning btn-lg"><i class="icon icon-left mdi mdi-filter-list"></i> Filter</button>
+                                @if(!ISSET($_GET['type']))
                                 <button name="print" value="Print" class="btn btn-space btn-success btn-lg"><i class="icon icon-left mdi mdi-print"></i> Print DTR</button>
                                 <button name="print" value="Accomplishments" class="btn btn-space btn-info btn-lg"><i class="icon icon-left mdi mdi-print"></i> Print Journals</button>
+                                @elseif(str_contains($_GET['type'], "DTR"))
+                                <button name="print" value="Print" class="btn btn-space btn-success btn-lg"><i class="icon icon-left mdi mdi-print"></i> Print DTR</button>
+                                @else
+                                <button name="print" value="Accomplishments" class="btn btn-space btn-info btn-lg"><i class="icon icon-left mdi mdi-print"></i> Print Journals</button>
+                                @endif
                             </p>
                         </td>
                     </tr>
@@ -105,18 +111,27 @@
     <div class="panel panel-default panel-table" style="border:1px solid gray;border-top:3px solid #2E4053;">
     <div class="panel-body table-responsive">
         <div class="panel-heading"> 
-            <div class="title"><b>List of Journals</b></div>
+            <div class="title"><b>List of {{ ISSET($_GET['type']) ? $_GET['type'] : 'Journals' }}</b></div>
         </div>
         <table class="table table-hover table-bordered h4" style="border-top:1px solid #D9D9D9;">
         <thead>
             <tr>
                 <th style="width:20%;">Name</th>
                 <th style="width:10%;">Date</th>
+                @if(!ISSET($_GET['type']))
                 <th style="width:10%;">AM Time In</th>
                 <th style="width:10%;">NN Time Out</th>
                 <th style="width:10%;">NN Time In</th>
                 <th style="width:10%;">PM Time Out</th>
                 <th style="width:20%;">Journal</th>
+                @elseif(str_contains($_GET['type'], "DTR"))
+                <th style="width:10%;">AM Time In</th>
+                <th style="width:10%;">NN Time Out</th>
+                <th style="width:10%;">NN Time In</th>
+                <th style="width:10%;">PM Time Out</th>
+                @else(str_contains($_GET['type'], "Journal"))
+                <th style="width:20%;">Journal</th>
+                @endif
                 <th style="width:10%;">Notification View</th>
                 <th style="width:10%;">Action</th>
             </tr>
@@ -127,6 +142,7 @@
             <tr>
                 <td style="vertical-align:top;">{{$posts_dtr->name}}</td>
                 <td style="vertical-align:top;">{{$posts_dtr->date}}</td>
+                @if(!ISSET($_GET['type']))
                 @if($posts_dtr->time1) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time1))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
                 @if($posts_dtr->time2) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time2))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
                 @if($posts_dtr->time3) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time3))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
@@ -140,6 +156,21 @@
                         @endif
                     </td> 
                 @else <td style="background-color:#FFFCAE;"></td> @endif
+                @elseif(str_contains($_GET['type'], "DTR"))
+                @if($posts_dtr->time1) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time1))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
+                @if($posts_dtr->time2) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time2))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
+                @if($posts_dtr->time3) <td style="vertical-align:top;">{{date( 'g:i A', strtotime($posts_dtr->time3))}}</td> @else <td style="background-color:#FFFCAE;"></td> @endif
+                @if($posts_dtr->time4) 
+                    <td style="vertical-align:top;">
+                        {{date( 'g:i A', strtotime($posts_dtr->time4))}}
+                        @if($posts_dtr->time5) 
+                            <br/>
+                            <b style="font-size:12px;">OT In: {{ $posts_dtr->time5 ? date( 'g:i A', strtotime($posts_dtr->time5)) : '' }}</b><br/>
+                            <b style="font-size:12px;">OT Out: {{ $posts_dtr->time6 ? date( 'g:i A', strtotime($posts_dtr->time6)) : '' }}</b>
+                        @endif
+                    </td> 
+                @else <td style="background-color:#FFFCAE;"></td> @endif
+                @else
                 @if($posts_dtr->time4) 
                     <td style="vertical-align:top;">
                         <div class="content hideContent">
@@ -177,6 +208,7 @@
                     </td>
                 @else 
                     <td style="background-color:#FFFCAE;"></td>
+                @endif
                 @endif
                 <td>{{ $posts_dtr->time1 == null ? "No Time In AM" : ($posts_dtr->time2 == null ? "No Time Out AM" : ($posts_dtr->time3 == null ? "No Time In PM" : ($posts_dtr->time4 == null ? "No Time Out PM" : ("")))) }}</td>
                 <td style="vertical-align:top;">
