@@ -353,10 +353,14 @@ class OjtController extends Controller
 
     //users start
     public function users_lists(){
-        if(Auth::user()->utype != "admin"){
+        if(Auth::user()->utype != "admin" && Auth::user()->utype != "rd"){
             return back();
         }else{
-            $post_users = DB::table('users')->select('*')->orderby('name','asc')->paginate(50);
+            if(Auth::user()->utype == "admin") {
+                $post_users = DB::table('users')->select('*')->orderby('name','asc')->paginate(50);
+            }else {
+                $post_users = DB::table('users')->select('*')->orderby('name','asc')->where('position', Auth::user()->position)->paginate(50);
+            }
             for ($x = 0; $x < COUNT($post_users); $x++) {
                 $user = $post_users[$x];
 

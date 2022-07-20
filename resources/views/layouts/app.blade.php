@@ -169,15 +169,17 @@
                   @endif
                   
                   @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd' || Auth::user()->utype == 'dc')<li><a href="{{url('/evaluation')}}"><i class="icon mdi mdi-account"></i><span>Evaluation</span></a>@endif
-                  @if(Auth::user()->utype == 'admin')
+                  @if(Auth::user()->utype == 'admin' || Auth::user()->utype == 'rd')
                   <li class="parent"><a href="#"><i class="icon mdi mdi-accounts"></i><span>Users</span></a>
                     <ul class="sub-menu">
                       <li><a href="{{url('/users_lists')}}">Lists</a>
                       </li>
+                      @if(Auth::user()->utype == 'admin')
                       <li><a href="{{url('/users_registration')}}">Register New</a>
                       </li>
                       <li><a href="{{url('/students_registration')}}">Register Student</a>
                       </li>
+                      @endif
                     </ul>
                   </li>
                   <!-- <li><a href="{{url('/holidays')}}"><i class="icon mdi mdi-calendar"></i><span>Holidays</span></a> -->
