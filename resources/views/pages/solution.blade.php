@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="col-xs-12" style="font-size:18px;">
+    @foreach($file_list as $files_list)
+    <!-- date("l") != 'Saturday' && date("l") != 'Sunday' -->
+        <a href="{{url('images/'.$files_list->file_name)}}">{{ $files_list->file_name }}</a> 
+        @if(Auth::user()->utype == 'user')- - - 
+            <a href="{{url('delete_single_file/'.$files_list->file_name)}}" style="color:red;">Remove</a><br/>
+        @endif
+        <br>
+    @endforeach
+</div>
+@if(Auth::user()->utype == 'user')
 <div  class="form-group xs-pt-10 col-sm-12">
     <span style="font-size:18px;font-weight:bold;"><i class="icon icon-left mdi mdi-attachment-alt"></i> Alternative Solution:</span>
     <form method="post" action="image/upload/store" enctype="multipart/form-data" class="dropzone" id="dropzone" style="margin-top:0px;font-size:18px;">
@@ -8,6 +19,7 @@
         @csrf
     </form>   
 </div>
+@endif
 
     <script type="text/javascript">
             Dropzone.options.dropzone =

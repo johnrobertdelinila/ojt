@@ -460,8 +460,15 @@ class OjtController extends Controller
     //users end
 
     public function solution() {
-        
-        return view('pages.solution');
+        $file_list = DB::table('uploads')->select('*');
+        if(Auth::user()->utype == 'user') {
+            $file_list = $file_list->where('dtr_id', '900 - ' . Auth::user()->id);
+        }elseif(Auth::user()->utype == 'user') {
+            $file_list = $file_list->where('dtr_id', 'LIKE', '900 - %');
+        }
+        $file_list = $file_list->orderBy('id','asc')->get();
+            
+        return view('pages.solution')->with('file_list',$file_list);
 
     }
     
@@ -892,7 +899,7 @@ class OjtController extends Controller
         $image->move(public_path('images'),$imageName);
         
         $imageUpload = new FileUpload();
-        $imageUpload->dtr_id = $request->input('dtr_id');
+        $imageUpload->dtr_id = $request->input('dtr_id') . " - " . Auth::user()->id;
         $imageUpload->file_name = $imageName;
         $imageUpload->save();
 

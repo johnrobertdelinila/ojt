@@ -197,7 +197,7 @@
                   {{--  <li><a target="_blank" href="{{url('/search_items')}}"><i class="icon mdi mdi-keyboard"></i><span>Frontdesk</span></a>  --}}
                   <!-- </li> -->
 
-                  @if(Auth::user()->utype == 'user')
+                  @if(Auth::user()->utype == 'user' || Auth::user()->utype == 'rd')
                     <li><a href="{{url('/solution')}}"><i class="icon mdi mdi-globe"></i><span>Alternative Solution</span></a></li>
                   @endif
                 </ul>
