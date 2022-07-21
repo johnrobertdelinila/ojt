@@ -70,8 +70,12 @@ tr.noBorder td {
                 <center><span style="border-top:2px solid;font-size:20px;">SIGNATURE OF STUDENT</span></center><br><br>
                 <hr style='height:3px;color:#333;background-color:#333;'>
                 <span style="font-size:18px;float:left;"><b><i>Verified as to the prescribed office hours</i></b></span><br><br><br>
-                
+                @if($head_signature != null)
+                    <center><img src="{{ asset('images/'.$head_signature) }}" width="250" alt="Signature"></center>
+                @endif
+                <center>
                 <span style="border-bottom:2px solid;font-size:22px;">@if($section_head == '')  @else {{strtoupper($section_head)}} @endif<br/></span>
                 <span style="font-size:20px;"><i>@if($section_head == '')  @else {{strtoupper($agency)}} @endif</i></span>
+                </center>
         </div>
     </div>

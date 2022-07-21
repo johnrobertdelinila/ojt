@@ -757,15 +757,17 @@ class OjtController extends Controller
                     }
                      $section_head = DB::table('users')
                     ->leftjoin('assignatories','assignatories.id','=','users.Assig_unit')
-                    ->select('assignatories.unit_head','assignatories.unit_title')
+                    ->select('assignatories.unit_head','assignatories.unit_title', 'users.signature')
                     ->where('name','like','%'.$request['employee_name'].'%')
                     ->get();
                     if(is_array($section_head) || count($section_head) >= 0 ){
                         $head = $section_head[0]->unit_head;
                         $title = $section_head[0]->unit_title;
+                        $tic = DB::table('users')->select('*')->where('name', 'LIKE', 'JEOFFREY %')->get()[0]->signature;
                     }else{
                         $head = '';
                         $title = '';
+                        $tic = null;
                     }
                     
                     $signature = Auth::user()->signature;
@@ -774,6 +776,7 @@ class OjtController extends Controller
                             ->with('employee_name',$request->input('employee_name'))
                             ->with('agency',$title)
                             ->with('signature', $signature)
+                            ->with('head_signature', $tic)
                             ->with('section_head',$head)
                             ->with('start_date',$request->input('start_date'))
                             ->with('end_date',$request->input('end_date'));
